@@ -61,17 +61,22 @@ private val MoveCompanionObjectFieldsPhase = makeJvmPhase(
 )
 
 
-private val ConstAndJvmFieldPropertiesPhase = makeJvmPhase(
-    { context, file -> ConstAndJvmFieldPropertiesLowering(context).lower(file) },
-    name = "ConstAndJvmFieldProperties",
-    description = "Substitute calls to const and Jvm>Field properties with const/field access"
+private val PropertiesToFieldsPhase = makeJvmPhase(
+    { context, file -> PropertiesToFieldsLowering(context).lower(file) },
+    name = "PropertiesToFields",
+    description = "Replace calls to default property accessors with field access and remove those accessors"
 )
-
 
 private val PropertiesPhase = makeJvmPhase(
     { context, file -> PropertiesLowering(context).lower(file) },
     name = "Properties",
-    description = "move fields and accessors for properties to their classes"
+    description = "Move fields and accessors for properties to their classes"
+)
+
+private val ConstPhase = makeJvmPhase(
+    { context, file -> ConstLowering(context).lower(file) },
+    name = "Const",
+    description = "Substitute calls to const properties with constant values"
 )
 
 
@@ -240,7 +245,8 @@ val jvmPhases = listOf(
     LateinitPhase,
 
     MoveCompanionObjectFieldsPhase,
-    ConstAndJvmFieldPropertiesPhase,
+    ConstPhase,
+    PropertiesToFieldsPhase,
     PropertiesPhase,
     AnnotationPhase,
 
