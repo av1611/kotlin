@@ -135,14 +135,7 @@ class InnerClassesLowering(val context: BackendContext) : ClassLoweringPass {
                         }
 
                         val outerThisField = context.declarationFactory.getOuterThisField(innerClass)
-                        irThis = IrGetFieldImpl(
-                            startOffset,
-                            endOffset,
-                            outerThisField.symbol,
-                            innerClass.defaultType,
-                            irThis,
-                            origin
-                        )
+                        irThis = IrGetFieldImpl(startOffset, endOffset, outerThisField.symbol, outerThisField.type, irThis, origin)
 
                         val outer = innerClass.parent
                         innerClass = outer as? IrClass ?:

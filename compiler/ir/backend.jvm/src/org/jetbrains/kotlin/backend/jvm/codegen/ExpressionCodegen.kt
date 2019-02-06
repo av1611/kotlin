@@ -450,8 +450,8 @@ class ExpressionCodegen(
     override fun visitGetField(expression: IrGetField, data: BlockInfo): StackValue {
         expression.markLineNumber(startOffset = true)
         val value = generateFieldValue(expression, data)
-        value.put(value.type, mv)
-        return onStack(value.type)
+        value.put(expression.asmType, mv)
+        return expression.onStack
     }
 
     override fun visitSetField(expression: IrSetField, data: BlockInfo): StackValue {
