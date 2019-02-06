@@ -395,7 +395,10 @@ internal fun IrType.renderTypeInner(): String =
         is IrErrorType -> "ERROR"
 
         is IrSimpleType -> buildString {
-            append(DECLARATION_RENDERER.renderClassifierName(classifier.descriptor)) // TODO get rid of descriptors
+            val classifierName = classifier.run {
+                if (isBound) (owner as IrClass).name else "[UNBOUND]"
+            }
+            append(classifierName)
             if (arguments.isNotEmpty()) {
                 append(
                     arguments.joinToString(prefix = "<", postfix = ">", separator = ", ") {
