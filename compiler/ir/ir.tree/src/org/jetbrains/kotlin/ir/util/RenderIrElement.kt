@@ -388,6 +388,12 @@ internal fun KotlinType.render(): String =
 internal fun IrDeclaration.renderOriginIfNonTrivial(): String =
     if (origin != IrDeclarationOrigin.DEFINED) origin.toString() + " " else ""
 
+internal fun classifierName(classifier: IrSymbolOwner): String = when (classifier) {
+    is IrClass -> classifier.name.asString()
+    is IrTypeParameter -> classifier.name.asString()
+    else -> "[UNKNOWN]"
+}
+
 internal fun IrType.renderTypeInner(): String =
     when (this) {
         is IrDynamicType -> "dynamic"
@@ -396,7 +402,7 @@ internal fun IrType.renderTypeInner(): String =
 
         is IrSimpleType -> buildString {
             val classifierName = classifier.run {
-                if (isBound) (owner as IrClass).name else "[UNBOUND]"
+                if (isBound) classifierName(owner) else "[UNBOUND]"
             }
             append(classifierName)
             if (arguments.isNotEmpty()) {
