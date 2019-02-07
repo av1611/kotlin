@@ -4962,13 +4962,22 @@ public final class IrKlibProtoBuf {
      * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String name = 1;</code>
      */
     org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String getName();
+
+    /**
+     * <code>repeated int32 line_start_offsets = 2;</code>
+     */
+    java.util.List<java.lang.Integer> getLineStartOffsetsList();
+    /**
+     * <code>repeated int32 line_start_offsets = 2;</code>
+     */
+    int getLineStartOffsetsCount();
+    /**
+     * <code>repeated int32 line_start_offsets = 2;</code>
+     */
+    int getLineStartOffsets(int index);
   }
   /**
    * Protobuf type {@code org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.FileEntry}
-   *
-   * <pre>
-   * TODO: extend me.
-   * </pre>
    */
   public static final class FileEntry extends
       org.jetbrains.kotlin.protobuf.GeneratedMessageLite implements
@@ -5030,6 +5039,27 @@ public final class IrKlibProtoBuf {
               bitField0_ |= 0x00000001;
               break;
             }
+            case 16: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                lineStartOffsets_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              lineStartOffsets_.add(input.readInt32());
+              break;
+            }
+            case 18: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
+                lineStartOffsets_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                lineStartOffsets_.add(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
           }
         }
       } catch (org.jetbrains.kotlin.protobuf.InvalidProtocolBufferException e) {
@@ -5038,6 +5068,9 @@ public final class IrKlibProtoBuf {
         throw new org.jetbrains.kotlin.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          lineStartOffsets_ = java.util.Collections.unmodifiableList(lineStartOffsets_);
+        }
         try {
           unknownFieldsCodedOutput.flush();
         } catch (java.io.IOException e) {
@@ -5079,8 +5112,31 @@ public final class IrKlibProtoBuf {
       return name_;
     }
 
+    public static final int LINE_START_OFFSETS_FIELD_NUMBER = 2;
+    private java.util.List<java.lang.Integer> lineStartOffsets_;
+    /**
+     * <code>repeated int32 line_start_offsets = 2;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getLineStartOffsetsList() {
+      return lineStartOffsets_;
+    }
+    /**
+     * <code>repeated int32 line_start_offsets = 2;</code>
+     */
+    public int getLineStartOffsetsCount() {
+      return lineStartOffsets_.size();
+    }
+    /**
+     * <code>repeated int32 line_start_offsets = 2;</code>
+     */
+    public int getLineStartOffsets(int index) {
+      return lineStartOffsets_.get(index);
+    }
+
     private void initFields() {
       name_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
+      lineStartOffsets_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -5106,6 +5162,9 @@ public final class IrKlibProtoBuf {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(1, name_);
       }
+      for (int i = 0; i < lineStartOffsets_.size(); i++) {
+        output.writeInt32(2, lineStartOffsets_.get(i));
+      }
       output.writeRawBytes(unknownFields);
     }
 
@@ -5118,6 +5177,15 @@ public final class IrKlibProtoBuf {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += org.jetbrains.kotlin.protobuf.CodedOutputStream
           .computeMessageSize(1, name_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < lineStartOffsets_.size(); i++) {
+          dataSize += org.jetbrains.kotlin.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(lineStartOffsets_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getLineStartOffsetsList().size();
       }
       size += unknownFields.size();
       memoizedSerializedSize = size;
@@ -5193,10 +5261,6 @@ public final class IrKlibProtoBuf {
 
     /**
      * Protobuf type {@code org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.FileEntry}
-     *
-     * <pre>
-     * TODO: extend me.
-     * </pre>
      */
     public static final class Builder extends
         org.jetbrains.kotlin.protobuf.GeneratedMessageLite.Builder<
@@ -5219,6 +5283,8 @@ public final class IrKlibProtoBuf {
         super.clear();
         name_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000001);
+        lineStartOffsets_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -5246,6 +5312,11 @@ public final class IrKlibProtoBuf {
           to_bitField0_ |= 0x00000001;
         }
         result.name_ = name_;
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          lineStartOffsets_ = java.util.Collections.unmodifiableList(lineStartOffsets_);
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.lineStartOffsets_ = lineStartOffsets_;
         result.bitField0_ = to_bitField0_;
         return result;
       }
@@ -5254,6 +5325,16 @@ public final class IrKlibProtoBuf {
         if (other == org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.FileEntry.getDefaultInstance()) return this;
         if (other.hasName()) {
           mergeName(other.getName());
+        }
+        if (!other.lineStartOffsets_.isEmpty()) {
+          if (lineStartOffsets_.isEmpty()) {
+            lineStartOffsets_ = other.lineStartOffsets_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureLineStartOffsetsIsMutable();
+            lineStartOffsets_.addAll(other.lineStartOffsets_);
+          }
+          
         }
         setUnknownFields(
             getUnknownFields().concat(other.unknownFields));
@@ -5351,6 +5432,72 @@ public final class IrKlibProtoBuf {
         return this;
       }
 
+      private java.util.List<java.lang.Integer> lineStartOffsets_ = java.util.Collections.emptyList();
+      private void ensureLineStartOffsetsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          lineStartOffsets_ = new java.util.ArrayList<java.lang.Integer>(lineStartOffsets_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      /**
+       * <code>repeated int32 line_start_offsets = 2;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getLineStartOffsetsList() {
+        return java.util.Collections.unmodifiableList(lineStartOffsets_);
+      }
+      /**
+       * <code>repeated int32 line_start_offsets = 2;</code>
+       */
+      public int getLineStartOffsetsCount() {
+        return lineStartOffsets_.size();
+      }
+      /**
+       * <code>repeated int32 line_start_offsets = 2;</code>
+       */
+      public int getLineStartOffsets(int index) {
+        return lineStartOffsets_.get(index);
+      }
+      /**
+       * <code>repeated int32 line_start_offsets = 2;</code>
+       */
+      public Builder setLineStartOffsets(
+          int index, int value) {
+        ensureLineStartOffsetsIsMutable();
+        lineStartOffsets_.set(index, value);
+        
+        return this;
+      }
+      /**
+       * <code>repeated int32 line_start_offsets = 2;</code>
+       */
+      public Builder addLineStartOffsets(int value) {
+        ensureLineStartOffsetsIsMutable();
+        lineStartOffsets_.add(value);
+        
+        return this;
+      }
+      /**
+       * <code>repeated int32 line_start_offsets = 2;</code>
+       */
+      public Builder addAllLineStartOffsets(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureLineStartOffsetsIsMutable();
+        org.jetbrains.kotlin.protobuf.AbstractMessageLite.Builder.addAll(
+            values, lineStartOffsets_);
+        
+        return this;
+      }
+      /**
+       * <code>repeated int32 line_start_offsets = 2;</code>
+       */
+      public Builder clearLineStartOffsets() {
+        lineStartOffsets_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.FileEntry)
     }
 
@@ -5390,30 +5537,13 @@ public final class IrKlibProtoBuf {
     org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.FileEntry getFileEntry();
 
     /**
-     * <code>required string fq_name = 3;</code>
-     *
-     * <pre>
-     * TODO: we need a better string management. See metadata serialization as an example.
-     * </pre>
+     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
      */
     boolean hasFqName();
     /**
-     * <code>required string fq_name = 3;</code>
-     *
-     * <pre>
-     * TODO: we need a better string management. See metadata serialization as an example.
-     * </pre>
+     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
      */
-    java.lang.String getFqName();
-    /**
-     * <code>required string fq_name = 3;</code>
-     *
-     * <pre>
-     * TODO: we need a better string management. See metadata serialization as an example.
-     * </pre>
-     */
-    org.jetbrains.kotlin.protobuf.ByteString
-        getFqNameBytes();
+    org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String getFqName();
   }
   /**
    * Protobuf type {@code org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrFile}
@@ -5487,9 +5617,16 @@ public final class IrKlibProtoBuf {
               break;
             }
             case 26: {
-              org.jetbrains.kotlin.protobuf.ByteString bs = input.readBytes();
+              org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = fqName_.toBuilder();
+              }
+              fqName_ = input.readMessage(org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(fqName_);
+                fqName_ = subBuilder.buildPartial();
+              }
               bitField0_ |= 0x00000002;
-              fqName_ = bs;
               break;
             }
           }
@@ -5580,63 +5717,24 @@ public final class IrKlibProtoBuf {
     }
 
     public static final int FQ_NAME_FIELD_NUMBER = 3;
-    private java.lang.Object fqName_;
+    private org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String fqName_;
     /**
-     * <code>required string fq_name = 3;</code>
-     *
-     * <pre>
-     * TODO: we need a better string management. See metadata serialization as an example.
-     * </pre>
+     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
      */
     public boolean hasFqName() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required string fq_name = 3;</code>
-     *
-     * <pre>
-     * TODO: we need a better string management. See metadata serialization as an example.
-     * </pre>
+     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
      */
-    public java.lang.String getFqName() {
-      java.lang.Object ref = fqName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        org.jetbrains.kotlin.protobuf.ByteString bs = 
-            (org.jetbrains.kotlin.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          fqName_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string fq_name = 3;</code>
-     *
-     * <pre>
-     * TODO: we need a better string management. See metadata serialization as an example.
-     * </pre>
-     */
-    public org.jetbrains.kotlin.protobuf.ByteString
-        getFqNameBytes() {
-      java.lang.Object ref = fqName_;
-      if (ref instanceof java.lang.String) {
-        org.jetbrains.kotlin.protobuf.ByteString b = 
-            org.jetbrains.kotlin.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fqName_ = b;
-        return b;
-      } else {
-        return (org.jetbrains.kotlin.protobuf.ByteString) ref;
-      }
+    public org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String getFqName() {
+      return fqName_;
     }
 
     private void initFields() {
       declarationId_ = java.util.Collections.emptyList();
       fileEntry_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.FileEntry.getDefaultInstance();
-      fqName_ = "";
+      fqName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -5662,6 +5760,10 @@ public final class IrKlibProtoBuf {
         memoizedIsInitialized = 0;
         return false;
       }
+      if (!getFqName().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -5676,7 +5778,7 @@ public final class IrKlibProtoBuf {
         output.writeMessage(2, fileEntry_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(3, getFqNameBytes());
+        output.writeMessage(3, fqName_);
       }
       output.writeRawBytes(unknownFields);
     }
@@ -5697,7 +5799,7 @@ public final class IrKlibProtoBuf {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += org.jetbrains.kotlin.protobuf.CodedOutputStream
-          .computeBytesSize(3, getFqNameBytes());
+          .computeMessageSize(3, fqName_);
       }
       size += unknownFields.size();
       memoizedSerializedSize = size;
@@ -5797,7 +5899,7 @@ public final class IrKlibProtoBuf {
         bitField0_ = (bitField0_ & ~0x00000001);
         fileEntry_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.FileEntry.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000002);
-        fqName_ = "";
+        fqName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -5855,9 +5957,7 @@ public final class IrKlibProtoBuf {
           mergeFileEntry(other.getFileEntry());
         }
         if (other.hasFqName()) {
-          bitField0_ |= 0x00000004;
-          fqName_ = other.fqName_;
-          
+          mergeFqName(other.getFqName());
         }
         setUnknownFields(
             getUnknownFields().concat(other.unknownFields));
@@ -5880,6 +5980,10 @@ public final class IrKlibProtoBuf {
           }
         }
         if (!getFileEntry().isInitialized()) {
+          
+          return false;
+        }
+        if (!getFqName().isInitialized()) {
           
           return false;
         }
@@ -6090,103 +6194,63 @@ public final class IrKlibProtoBuf {
         return this;
       }
 
-      private java.lang.Object fqName_ = "";
+      private org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String fqName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
       /**
-       * <code>required string fq_name = 3;</code>
-       *
-       * <pre>
-       * TODO: we need a better string management. See metadata serialization as an example.
-       * </pre>
+       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
        */
       public boolean hasFqName() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required string fq_name = 3;</code>
-       *
-       * <pre>
-       * TODO: we need a better string management. See metadata serialization as an example.
-       * </pre>
+       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
        */
-      public java.lang.String getFqName() {
-        java.lang.Object ref = fqName_;
-        if (!(ref instanceof java.lang.String)) {
-          org.jetbrains.kotlin.protobuf.ByteString bs =
-              (org.jetbrains.kotlin.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            fqName_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String getFqName() {
+        return fqName_;
       }
       /**
-       * <code>required string fq_name = 3;</code>
-       *
-       * <pre>
-       * TODO: we need a better string management. See metadata serialization as an example.
-       * </pre>
+       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
        */
-      public org.jetbrains.kotlin.protobuf.ByteString
-          getFqNameBytes() {
-        java.lang.Object ref = fqName_;
-        if (ref instanceof String) {
-          org.jetbrains.kotlin.protobuf.ByteString b = 
-              org.jetbrains.kotlin.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fqName_ = b;
-          return b;
-        } else {
-          return (org.jetbrains.kotlin.protobuf.ByteString) ref;
+      public Builder setFqName(org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String value) {
+        if (value == null) {
+          throw new NullPointerException();
         }
+        fqName_ = value;
+
+        bitField0_ |= 0x00000004;
+        return this;
       }
       /**
-       * <code>required string fq_name = 3;</code>
-       *
-       * <pre>
-       * TODO: we need a better string management. See metadata serialization as an example.
-       * </pre>
+       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
        */
       public Builder setFqName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        fqName_ = value;
-        
+          org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.Builder builderForValue) {
+        fqName_ = builderForValue.build();
+
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>required string fq_name = 3;</code>
-       *
-       * <pre>
-       * TODO: we need a better string management. See metadata serialization as an example.
-       * </pre>
+       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
+       */
+      public Builder mergeFqName(org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String value) {
+        if (((bitField0_ & 0x00000004) == 0x00000004) &&
+            fqName_ != org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance()) {
+          fqName_ =
+            org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.newBuilder(fqName_).mergeFrom(value).buildPartial();
+        } else {
+          fqName_ = value;
+        }
+
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String fq_name = 3;</code>
        */
       public Builder clearFqName() {
+        fqName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
+
         bitField0_ = (bitField0_ & ~0x00000004);
-        fqName_ = getDefaultInstance().getFqName();
-        
-        return this;
-      }
-      /**
-       * <code>required string fq_name = 3;</code>
-       *
-       * <pre>
-       * TODO: we need a better string management. See metadata serialization as an example.
-       * </pre>
-       */
-      public Builder setFqNameBytes(
-          org.jetbrains.kotlin.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        fqName_ = value;
-        
         return this;
       }
 

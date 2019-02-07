@@ -1045,6 +1045,7 @@ internal class IrModuleSerializer(
 
     fun serializeFileEntry(entry: SourceManager.FileEntry) = IrKlibProtoBuf.FileEntry.newBuilder()
         .setName(serializeString(entry.name))
+        .addAllLineStartOffsets(entry.lineStartOffsets.asIterable())
         .build()
 
     val topLevelDeclarations = mutableMapOf<UniqId, ByteArray>()
@@ -1052,7 +1053,7 @@ internal class IrModuleSerializer(
     fun serializeIrFile(file: IrFile): IrKlibProtoBuf.IrFile {
         val proto = IrKlibProtoBuf.IrFile.newBuilder()
             .setFileEntry(serializeFileEntry(file.fileEntry))
-            .setFqName(file.fqName.toString())
+            .setFqName(serializeString(file.fqName.toString()))
 
         file.declarations.forEach {
             if (it is IrTypeAlias) return@forEach
