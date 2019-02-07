@@ -54480,23 +54480,6 @@ public final class IrKlibProtoBuf {
      * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrDeclarator declarator = 4;</code>
      */
     org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.IrDeclarator getDeclarator();
-
-    /**
-     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-     *
-     * <pre>
-     * TODO: files should be communicated some other way, I suppose.
-     * </pre>
-     */
-    boolean hasFileName();
-    /**
-     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-     *
-     * <pre>
-     * TODO: files should be communicated some other way, I suppose.
-     * </pre>
-     */
-    org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String getFileName();
   }
   /**
    * Protobuf type {@code org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrDeclaration}
@@ -54600,19 +54583,6 @@ public final class IrKlibProtoBuf {
               bitField0_ |= 0x00000008;
               break;
             }
-            case 42: {
-              org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000010) == 0x00000010)) {
-                subBuilder = fileName_.toBuilder();
-              }
-              fileName_ = input.readMessage(org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(fileName_);
-                fileName_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000010;
-              break;
-            }
           }
         }
       } catch (org.jetbrains.kotlin.protobuf.InvalidProtocolBufferException e) {
@@ -54707,35 +54677,11 @@ public final class IrKlibProtoBuf {
       return declarator_;
     }
 
-    public static final int FILE_NAME_FIELD_NUMBER = 5;
-    private org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String fileName_;
-    /**
-     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-     *
-     * <pre>
-     * TODO: files should be communicated some other way, I suppose.
-     * </pre>
-     */
-    public boolean hasFileName() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-     *
-     * <pre>
-     * TODO: files should be communicated some other way, I suppose.
-     * </pre>
-     */
-    public org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String getFileName() {
-      return fileName_;
-    }
-
     private void initFields() {
       origin_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.IrDeclarationOrigin.getDefaultInstance();
       coordinates_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.Coordinates.getDefaultInstance();
       annotations_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.Annotations.getDefaultInstance();
       declarator_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.IrDeclarator.getDefaultInstance();
-      fileName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -54759,10 +54705,6 @@ public final class IrKlibProtoBuf {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasFileName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!getOrigin().isInitialized()) {
         memoizedIsInitialized = 0;
         return false;
@@ -54776,10 +54718,6 @@ public final class IrKlibProtoBuf {
         return false;
       }
       if (!getDeclarator().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!getFileName().isInitialized()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -54801,9 +54739,6 @@ public final class IrKlibProtoBuf {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeMessage(4, declarator_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, fileName_);
       }
       output.writeRawBytes(unknownFields);
     }
@@ -54829,10 +54764,6 @@ public final class IrKlibProtoBuf {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += org.jetbrains.kotlin.protobuf.CodedOutputStream
           .computeMessageSize(4, declarator_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += org.jetbrains.kotlin.protobuf.CodedOutputStream
-          .computeMessageSize(5, fileName_);
       }
       size += unknownFields.size();
       memoizedSerializedSize = size;
@@ -54936,8 +54867,6 @@ public final class IrKlibProtoBuf {
         bitField0_ = (bitField0_ & ~0x00000004);
         declarator_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.IrDeclarator.getDefaultInstance();
         bitField0_ = (bitField0_ & ~0x00000008);
-        fileName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -54977,10 +54906,6 @@ public final class IrKlibProtoBuf {
           to_bitField0_ |= 0x00000008;
         }
         result.declarator_ = declarator_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.fileName_ = fileName_;
         result.bitField0_ = to_bitField0_;
         return result;
       }
@@ -54998,9 +54923,6 @@ public final class IrKlibProtoBuf {
         }
         if (other.hasDeclarator()) {
           mergeDeclarator(other.getDeclarator());
-        }
-        if (other.hasFileName()) {
-          mergeFileName(other.getFileName());
         }
         setUnknownFields(
             getUnknownFields().concat(other.unknownFields));
@@ -55024,10 +54946,6 @@ public final class IrKlibProtoBuf {
           
           return false;
         }
-        if (!hasFileName()) {
-          
-          return false;
-        }
         if (!getOrigin().isInitialized()) {
           
           return false;
@@ -55041,10 +54959,6 @@ public final class IrKlibProtoBuf {
           return false;
         }
         if (!getDeclarator().isInitialized()) {
-          
-          return false;
-        }
-        if (!getFileName().isInitialized()) {
           
           return false;
         }
@@ -55307,90 +55221,6 @@ public final class IrKlibProtoBuf {
         declarator_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.IrDeclarator.getDefaultInstance();
 
         bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-
-      private org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String fileName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
-      /**
-       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-       *
-       * <pre>
-       * TODO: files should be communicated some other way, I suppose.
-       * </pre>
-       */
-      public boolean hasFileName() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      /**
-       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-       *
-       * <pre>
-       * TODO: files should be communicated some other way, I suppose.
-       * </pre>
-       */
-      public org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String getFileName() {
-        return fileName_;
-      }
-      /**
-       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-       *
-       * <pre>
-       * TODO: files should be communicated some other way, I suppose.
-       * </pre>
-       */
-      public Builder setFileName(org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        fileName_ = value;
-
-        bitField0_ |= 0x00000010;
-        return this;
-      }
-      /**
-       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-       *
-       * <pre>
-       * TODO: files should be communicated some other way, I suppose.
-       * </pre>
-       */
-      public Builder setFileName(
-          org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.Builder builderForValue) {
-        fileName_ = builderForValue.build();
-
-        bitField0_ |= 0x00000010;
-        return this;
-      }
-      /**
-       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-       *
-       * <pre>
-       * TODO: files should be communicated some other way, I suppose.
-       * </pre>
-       */
-      public Builder mergeFileName(org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String value) {
-        if (((bitField0_ & 0x00000010) == 0x00000010) &&
-            fileName_ != org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance()) {
-          fileName_ =
-            org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.newBuilder(fileName_).mergeFrom(value).buildPartial();
-        } else {
-          fileName_ = value;
-        }
-
-        bitField0_ |= 0x00000010;
-        return this;
-      }
-      /**
-       * <code>required .org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.String file_name = 5;</code>
-       *
-       * <pre>
-       * TODO: files should be communicated some other way, I suppose.
-       * </pre>
-       */
-      public Builder clearFileName() {
-        fileName_ = org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.IrKlibProtoBuf.String.getDefaultInstance();
-
-        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 

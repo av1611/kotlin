@@ -1038,12 +1038,6 @@ internal class IrModuleSerializer(
 
         proto.setDeclarator(declarator)
 
-        // TODO disabled for now.
-        //val fileName = context.ir.originalModuleIndex.declarationToFile[declaration.descriptor]
-        //proto.fileName = fileName
-
-        proto.fileName = serializeString("some file name")
-
         return proto.build()
     }
 

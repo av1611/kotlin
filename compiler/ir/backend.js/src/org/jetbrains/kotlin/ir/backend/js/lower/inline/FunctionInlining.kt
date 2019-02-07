@@ -10,6 +10,7 @@ package org.jetbrains.kotlin.ir.backend.js.lower.inline
 import org.jetbrains.kotlin.backend.common.*
 import org.jetbrains.kotlin.backend.common.descriptors.explicitParameters
 import org.jetbrains.kotlin.backend.common.lower.createIrBuilder
+import org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.fileEntry
 import org.jetbrains.kotlin.descriptors.*
 import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.IrStatement
@@ -263,7 +264,7 @@ private class Inliner(val globalSubstituteMap: MutableMap<DeclarationDescriptor,
             }
         }
 
-        val sourceFileName = context.originalModuleIndex.declarationToFile[callee.descriptor.original] ?: ""
+        val sourceFileName = callee.fileEntry.name
 
         copyIrElement.addCurrentSubstituteMap(globalSubstituteMap)
 
